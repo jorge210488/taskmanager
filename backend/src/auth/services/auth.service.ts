@@ -30,7 +30,9 @@ export class AuthService {
     return newUser.save();
   }
 
-  async signin(loginDto: LoginDto): Promise<{ token: string }> {
+  async signin(
+    loginDto: LoginDto,
+  ): Promise<{ token: string; name: string; email: string }> {
     const { email, password } = loginDto;
 
     const user = await this.userModel.findOne({ email });
@@ -44,7 +46,12 @@ export class AuthService {
     }
 
     const token = this.jwtService.sign({ userId: user._id });
-    return { token };
+
+    return {
+      token,
+      name: user.name,
+      email: user.email,
+    };
   }
 
   async getAllUsers(): Promise<UserDocument[]> {
