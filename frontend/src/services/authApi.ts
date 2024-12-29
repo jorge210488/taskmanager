@@ -1,8 +1,23 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+// Base query con logging para capturar todas las solicitudes
+const baseQueryWithLogging = fetchBaseQuery({
+  baseUrl: import.meta.env.VITE_BACKEND_URL,
+  credentials: "include",
+  prepareHeaders: (headers) => {
+    console.log(`Base URL: ${import.meta.env.VITE_BACKEND_URL}`);
+    return headers;
+  },
+});
+
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BACKEND_URL }),
+  baseQuery: async (args, api, extraOptions) => {
+    console.log(`Solicitud: [${args.method || "GET"}] ${args.url}`);
+    const result = await baseQueryWithLogging(args, api, extraOptions);
+    console.log("Resultado:", result);
+    return result;
+  },
   tagTypes: ["User"],
   endpoints: (builder) => ({
     signup: builder.mutation({

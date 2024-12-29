@@ -13,6 +13,9 @@ async function bootstrap() {
   const frontendOrigin = configService.get<string>('FRONTEND_URL');
   const port = configService.get<number>('PORT');
 
+  // Log del dominio permitido del frontend
+  console.log(`🌐 Frontend Origin: ${frontendOrigin}`);
+
   app.enableCors({
     origin: frontendOrigin,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
