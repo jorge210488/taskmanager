@@ -35,7 +35,7 @@ export default function TaskControls({ onAddTask }: TaskControlsProps) {
       {/* Crear Tarea */}
       <button
         onClick={onAddTask}
-        className="bg-[#9575CD] text-white rounded-lg px-4 py-2"
+        className="bg-[#9575CD] hover:bg-gray-400 text-white rounded-lg px-4 py-2 cursor-pointer"
       >
         Crear Tarea
       </button>

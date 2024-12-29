@@ -1,14 +1,27 @@
+import { useState } from "react";
 import TaskOverview from "./taskOverview";
 import TaskControls from "./taskControl";
+import TaskModal from "./taskModal";
+import TaskForm from "./taskForm";
+import TaskCards from "./taskCards";
+import { Task } from "../../interfaces/task.interface";
 
 export default function TasksPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+
   const handleAddTask = () => {
     console.log("Abrir modal para crear tarea");
-    // Aquí puedes manejar la lógica para abrir un modal o formulario para crear tareas
+    setSelectedTask(null);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
-    <div className="min-h-screen flex flex-col overflow-auto mt-4 mb-8">
+    <div className="min-h-screen flex flex-col overflow-auto mt-4 mb-10 sm:mr-10">
       {/* Headline */}
       <div className="w-full text-center text-white px-4 md:px-8 mt-8 sm:mt-4">
         <h1 className="text-3xl md:text-5xl font-bold leading-tight drop-shadow-md">
@@ -21,13 +34,25 @@ export default function TasksPage() {
         </p>
       </div>
 
-      {/* Task Overview y Controls juntos en el mismo flujo */}
+      {/* Task Overview y Controls */}
       <div className="flex flex-col gap-6 px-6">
         <TaskOverview />
         <div className="mx-auto w-full lg:w-1/2">
           <TaskControls onAddTask={handleAddTask} />
         </div>
+        <div className="w-full">
+          <TaskCards />
+        </div>
       </div>
+
+      {/* Task Modal */}
+      <TaskModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        type={selectedTask ? "update" : "create"}
+      >
+        <TaskForm task={selectedTask} onClose={handleCloseModal} />
+      </TaskModal>
     </div>
   );
 }

@@ -5,10 +5,8 @@ import withReactContent from "sweetalert2-react-content";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { useSigninMutation } from "../../services/authApi";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux/store"; // Importar el tipo de dispatch
+import { AppDispatch } from "../../redux/store";
 import { login } from "../../redux/authSlice";
-import { fetchTasksSuccess } from "../../redux/tasksSlice"; // Importar la acción para guardar tareas
-import { taskApi } from "../../services/taskApi"; // Importar taskApi
 import { SignInForm } from "../../interfaces/signin.interface";
 import { AuthProps } from "../../interfaces/authProps.interface";
 import { SignInProps } from "../../interfaces/signinProps";
@@ -29,9 +27,8 @@ export default function SignIn({ onLogin }: SignInProps) {
   const handleSubmit = async (values: SignInForm) => {
     try {
       const response: AuthProps = await loginMutation(values).unwrap();
-      console.log("Respuesta del backend:", response);
+      // console.log("Respuesta del backend:", response);
 
-      // Guardar el estado de autenticación
       dispatch(
         login({
           name: response.name,
@@ -39,16 +36,6 @@ export default function SignIn({ onLogin }: SignInProps) {
           token: response.token,
         })
       );
-
-      // Cargar las tareas
-      const tasksResponse = await dispatch(
-        taskApi.endpoints.getTasks.initiate(undefined)
-      ).unwrap(); // Desempaquetar la respuesta de la API
-
-      console.log("Tareas cargadas:", tasksResponse);
-
-      // Guardar las tareas en el estado global
-      dispatch(fetchTasksSuccess(tasksResponse));
 
       if (onLogin) {
         onLogin({
