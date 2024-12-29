@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 export type TaskDocument = Task & Document;
@@ -30,6 +30,13 @@ export class Task {
     default: false,
   })
   completed: boolean;
+
+  @Prop({
+    type: Types.ObjectId,
+    ref: 'User',
+    required: true,
+  })
+  userId: Types.ObjectId;
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task);

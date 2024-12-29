@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQueryWithLogging = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_BACKEND_URL,
-  credentials: "include",
   prepareHeaders: (headers) => {
     console.log(`Base URL: ${import.meta.env.VITE_BACKEND_URL}`);
     return headers;

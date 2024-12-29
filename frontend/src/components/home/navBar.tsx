@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { LogOut } from "react-feather";
-import { useNavigate } from "react-router-dom";
+import { Home, List, LogOut } from "react-feather";
+import { useNavigate, useLocation } from "react-router-dom";
 import ProfilePic from "../../assets/profile.png";
 import useClickOutside from "../../hooks/useClickOutside";
 import HomeModal from "./homeModal";
@@ -22,6 +22,7 @@ export default function NavBar() {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     dispatch(logout());
@@ -47,6 +48,9 @@ export default function NavBar() {
     setModalType(undefined);
   };
 
+  const navigateTo = location.pathname === "/" ? "/tasks" : "/";
+  const navigateLabel = location.pathname === "/" ? "Tareas" : "Inicio";
+
   return (
     <nav
       className="fixed top-0 left-0 w-full flex items-center justify-end px-4 py-2 z-50"
@@ -70,7 +74,7 @@ export default function NavBar() {
       ) : (
         <div className="relative w-fit" ref={dropRef}>
           <button
-            className="flex gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white font-medium"
+            className="flex gap-2 px-4 py-2 rounded-lg bg-blue-500 hover:bg-[#9575CD] text-white font-medium"
             onClick={() => setShowDropdown((curr) => !curr)}
           >
             Menu
@@ -89,6 +93,17 @@ export default function NavBar() {
                     {email || "Correo no disponible"}
                   </a>
                 </div>
+              </li>
+              <li
+                className="flex gap-3 items-center px-4 py-2 text-gray-800 hover:bg-gray-50 cursor-pointer"
+                onClick={() => navigate(navigateTo)}
+              >
+                {location.pathname === "/" ? (
+                  <List size={20} />
+                ) : (
+                  <Home size={20} />
+                )}
+                {navigateLabel}
               </li>
               <li
                 className="flex gap-3 items-center px-4 py-2 text-gray-800 hover:bg-gray-50 cursor-pointer"

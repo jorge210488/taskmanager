@@ -9,6 +9,7 @@ import {
   Query,
   HttpCode,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { TaskService } from '../services/task.service';
 import { CreateTaskDto } from '../dto/createTask.dto';
@@ -17,6 +18,7 @@ import { TaskDocument } from '../schemas/task.schema';
 import { ApiBearerAuth, ApiTags, ApiQuery } from '@nestjs/swagger';
 import { AuthGuard } from '../../auth/guards/auth.guard';
 import { TaskStatus } from '../enums/taskStatus.enum';
+import { JwtPayload } from '../../auth/interfaces/jwtPayload.interface';
 
 @ApiTags('tasks')
 @Controller('tasks')
@@ -29,8 +31,12 @@ export class TaskController {
   @UseGuards(AuthGuard)
   async createTask(
     @Body() createTaskDto: CreateTaskDto,
+    @Req() req: { user: JwtPayload },
   ): Promise<TaskDocument> {
-    return this.taskService.createTask(createTaskDto);
+    return this.taskService.createTask({
+      ...createTaskDto,
+      userId: req.user.userId,
+    });
   }
 
   @ApiBearerAuth()
@@ -44,9 +50,20 @@ export class TaskController {
     description: 'Filtrar las tareas por estado: "completed" o "pending"',
   })
   async getTasks(
+    @Req() req: { user: JwtPayload },
     @Query('status') status?: TaskStatus,
   ): Promise<TaskDocument[]> {
-    return this.taskService.getTasks(status);
+    return this.taskService.getTasks(req.user.userId, status);
+  }
+
+  @ApiBearerAuth()
+  @HttpCode(200)
+  @Get('user/:userId')
+  @UseGuards(AuthGuard)
+  async getTasksByUserId(
+    @Param('userId') userId: string,
+  ): Promise<TaskDocument[]> {
+    return this.taskService.getTasksByUserId(userId);
   }
 
   @ApiBearerAuth()

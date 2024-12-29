@@ -8,9 +8,9 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gradient-to-r from-blue-500 to-green-500">
       <NavBar />
-      <main className="flex-grow">{children}</main>
+      <main className="flex-grow overflow-auto relative">{children}</main>
       <Footer />
     </div>
   );

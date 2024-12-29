@@ -12,14 +12,23 @@ export class TaskService {
     @InjectModel(Task.name) private readonly taskModel: Model<TaskDocument>,
   ) {}
 
-  async createTask(createTaskDto: CreateTaskDto): Promise<TaskDocument> {
+  async createTask(
+    createTaskDto: CreateTaskDto & { userId: string },
+  ): Promise<TaskDocument> {
     const newTask = new this.taskModel(createTaskDto);
     return newTask.save();
   }
 
-  async getTasks(status?: TaskStatus): Promise<TaskDocument[]> {
-    const filter = status ? { completed: status === TaskStatus.COMPLETED } : {};
+  async getTasks(userId: string, status?: TaskStatus): Promise<TaskDocument[]> {
+    const filter: { userId: string; completed?: boolean } = { userId };
+    if (status) {
+      filter.completed = status === TaskStatus.COMPLETED;
+    }
     return this.taskModel.find(filter).exec();
+  }
+
+  async getTasksByUserId(userId: string): Promise<TaskDocument[]> {
+    return this.taskModel.find({ userId }).exec();
   }
 
   async getTaskById(id: string): Promise<TaskDocument> {

@@ -13,7 +13,7 @@ export default function Footer() {
         </p>
         <button
           onClick={handleScrollToTop}
-          className="flex items-center px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-xs sm:text-sm"
+          className="flex items-center px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-[#9575CD] text-xs sm:text-sm"
         >
           <ArrowUp size={16} />
           Arriba
