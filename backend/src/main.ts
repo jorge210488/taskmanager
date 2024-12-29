@@ -17,7 +17,7 @@ async function bootstrap() {
   console.log(`🌐 Frontend Origin: ${frontendOrigin}`);
 
   app.enableCors({
-    origin: frontendOrigin,
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
