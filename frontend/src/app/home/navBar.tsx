@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { LogOut } from "react-feather";
 import ProfilePic from "../../assets/Profile.png";
 import useClickOutside from "../../hooks/useClickOutside";
-import Modal from "./homeModal";
+import HomeModal from "./homeModal";
 import SignUp from "./signup";
 import SignIn from "./signin";
 import { RootState } from "../../redux/store";
@@ -11,7 +11,9 @@ import { logout, login } from "../../redux/authSlice";
 
 export default function NavBar() {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [modalType, setModalType] = useState<"signup" | "signin" | null>(null);
+  const [modalType, setModalType] = useState<"signup" | "signin" | undefined>(
+    undefined
+  );
   const dropRef = useClickOutside(() => setShowDropdown(false));
 
   const { isAuthenticated, name, email } = useSelector(
@@ -30,7 +32,7 @@ export default function NavBar() {
     token: string;
   }) => {
     dispatch(login(userData));
-    setModalType(null);
+    setModalType(undefined);
   };
 
   const handleOpenModal = (type: "signup" | "signin") => {
@@ -38,11 +40,14 @@ export default function NavBar() {
   };
 
   const handleCloseModal = () => {
-    setModalType(null);
+    setModalType(undefined);
   };
 
   return (
-    <nav className="flex items-center justify-end px-4 py-2 border-b bg-gray-50">
+    <nav
+      className="fixed top-0 left-0 w-full flex items-center justify-end px-4 py-2 z-50"
+      style={{ background: "transparent" }}
+    >
       {!isAuthenticated ? (
         <div className="flex gap-4">
           <button
@@ -93,20 +98,14 @@ export default function NavBar() {
       )}
 
       {/* Modal reutilizable */}
-      <Modal
+      <HomeModal
         isOpen={!!modalType}
         onClose={handleCloseModal}
-        animation={
-          <div className="text-center">
-            {modalType === "signup"
-              ? "🚀 Crea tu cuenta"
-              : "🔒 Bienvenido de nuevo"}
-          </div>
-        }
+        type={modalType}
       >
         {modalType === "signup" && <SignUp onClose={handleCloseModal} />}
         {modalType === "signin" && <SignIn onLogin={handleLogin} />}
-      </Modal>
+      </HomeModal>
     </nav>
   );
 }

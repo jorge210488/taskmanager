@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import NavBar from "./app/home/navBar";
+import Footer from "./app/home/footer";
 import type { Metadata } from "next";
 interface RootLayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   );
