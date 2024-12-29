@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LogOut } from "react-feather";
 import { useNavigate } from "react-router-dom";
-import ProfilePic from "../../assets/Profile.png";
+import ProfilePic from "../../assets/profile.png";
 import useClickOutside from "../../hooks/useClickOutside";
 import HomeModal from "./homeModal";
 import SignUp from "./signup";
