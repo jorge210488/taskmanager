@@ -1,24 +1,17 @@
 import { ReactNode } from "react";
-import NavBar from "./app/home/navBar";
-import Footer from "./app/home/footer";
-import type { Metadata } from "next";
+import NavBar from "./components/home/navBar";
+import Footer from "./components/home/footer";
+
 interface RootLayoutProps {
   children: ReactNode;
 }
 
-export const metadata: Metadata = {
-  title: "TaskManager",
-  description: "Taskmanager",
-};
-
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="es">
-      <body>
-        <NavBar />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <div className="flex flex-col min-h-screen">
+      <NavBar />
+      <main className="flex-grow">{children}</main>
+      <Footer />
+    </div>
   );
 }

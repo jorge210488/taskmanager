@@ -1,14 +1,17 @@
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRouter from "./routes/router";
 import RootLayout from "./layout";
-import Home from "./app/home/home";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <RootLayout>
-        <Home />
-      </RootLayout>
+      <Router>
+        <RootLayout>
+          <AppRouter />
+        </RootLayout>
+      </Router>
     </Provider>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LogOut } from "react-feather";
+import { useNavigate } from "react-router-dom";
 import ProfilePic from "../../assets/Profile.png";
 import useClickOutside from "../../hooks/useClickOutside";
 import HomeModal from "./homeModal";
@@ -20,10 +21,12 @@ export default function NavBar() {
     (state: RootState) => state.auth
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
     setShowDropdown(false);
+    navigate("/");
   };
 
   const handleLogin = (userData: {
@@ -33,6 +36,7 @@ export default function NavBar() {
   }) => {
     dispatch(login(userData));
     setModalType(undefined);
+    navigate("/tasks");
   };
 
   const handleOpenModal = (type: "signup" | "signin") => {

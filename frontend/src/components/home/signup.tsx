@@ -5,12 +5,9 @@ import withReactContent from "sweetalert2-react-content";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { useSignupMutation } from "../../services/authApi";
 import { SignUpForm } from "../../interfaces/signup.interface";
+import { SignUpProps } from "../../interfaces/signupProps.interface";
 
 const MySwal = withReactContent(Swal);
-
-interface SignUpProps {
-  onClose: () => void;
-}
 
 export default function SignUp({ onClose }: SignUpProps) {
   const [signupMutation, { isLoading, error }] = useSignupMutation();
