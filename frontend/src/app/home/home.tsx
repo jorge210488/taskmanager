@@ -1,9 +1,9 @@
-import AnimationLottie from "../../helpers/animationLottie.js";
-import lottieHome from "../../assets/Home.json";
+import AnimationLottie from "../../helpers/animationLottie";
+import lottieHome from "../../assets/homeLottie.json";
 
 export default function Home() {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center min-h-[calc(100vh-60px)] bg-gradient-to-r from-blue-500 to-green-500 m-0 p-0">
+    <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-green-500 m-0 p-0">
       {/* Texto de Headline */}
       <div className="w-full md:w-1/2 text-center text-white px-4 md:px-8 mt-4 md:mt-0">
         <h1 className="text-3xl md:text-5xl font-bold leading-tight drop-shadow-md">

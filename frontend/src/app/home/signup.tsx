@@ -39,7 +39,7 @@ export default function SignUp({ onClose }: SignUpProps) {
         icon: "success",
         confirmButtonText: "Cerrar",
       });
-      onClose(); // Cierra el modal
+      onClose();
     } catch (err) {
       console.error("Error al registrarse:", err);
       MySwal.fire({
@@ -62,13 +62,13 @@ export default function SignUp({ onClose }: SignUpProps) {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <Form className="space-y-4">
+      <Form className="space-y-1 sm:space-y-4 text-sm sm:text-xl">
         <div>
           <label htmlFor="name">Nombre</label>
           <Field
             name="name"
             type="text"
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-3 py-1 sm:py-2 r border rounded-lg"
             placeholder="Tu nombre"
           />
           <ErrorMessage
@@ -83,7 +83,7 @@ export default function SignUp({ onClose }: SignUpProps) {
           <Field
             name="email"
             type="email"
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-3 py-1 sm:py-2 border rounded-lg"
             placeholder="Tu correo"
           />
           <ErrorMessage
@@ -98,7 +98,7 @@ export default function SignUp({ onClose }: SignUpProps) {
           <Field
             name="password"
             type="password"
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-3 py-1 sm:py-2 border rounded-lg"
             placeholder="Tu clave"
           />
           <ErrorMessage
@@ -113,7 +113,7 @@ export default function SignUp({ onClose }: SignUpProps) {
           <Field
             name="confirmPassword"
             type="password"
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-3 py-1 sm:py-2 pborder rounded-lg"
             placeholder="Confirma tu clave"
           />
           <ErrorMessage
@@ -126,7 +126,7 @@ export default function SignUp({ onClose }: SignUpProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+          className="w-full py-1 sm:py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
         >
           {isLoading ? "Registrando..." : "Registrarse"}
         </button>

@@ -71,12 +71,12 @@ export default function SignIn({ onLogin }: SignInProps) {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <Form className="space-y-4">
+      <Form className="space-y-1 sm:space-y-4 text-sm sm:text-xl">
         <div>
           <label>Correo</label>
           <Field
             name="email"
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-3 py-1 sm:py-2 border rounded-lg"
             placeholder="Correo electrónico"
           />
           <ErrorMessage
@@ -90,7 +90,7 @@ export default function SignIn({ onLogin }: SignInProps) {
           <Field
             name="password"
             type="password"
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-3 py-1 sm:py-2 border rounded-lg"
             placeholder="Clave"
           />
           <ErrorMessage
@@ -101,7 +101,7 @@ export default function SignIn({ onLogin }: SignInProps) {
         </div>
         <button
           type="submit"
-          className="w-full py-2 bg-blue-600 text-white rounded-lg"
+          className="w-full py-1 sm:py-2 bg-blue-600 text-white rounded-lg"
           disabled={isLoading}
         >
           {isLoading ? "Cargando..." : "Iniciar Sesión"}
