@@ -5,12 +5,22 @@ import "chart.js/auto";
 import { Task } from "../../interfaces/task.interface";
 import AnimationLottie from "../../helpers/animationLottie";
 import chart from "../../assets/chart.json";
+import noData from "../../assets/noData.json";
 
 export default function TaskOverview() {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
 
   if (!tasks || tasks.length === 0) {
-    return <p className="text-center text-lg">No tasks available</p>;
+    return (
+      <div className="flex flex-col items-center justify-center p-4">
+        <div className="w-[200px] h-[150px] sm:w-[300px] sm:h-[250px]">
+          <AnimationLottie animationData={noData} />
+        </div>
+        <p className="text-center text-sm sm:text-lg text-white mt-4">
+          Aún no tienes tareas, haz click en Crear Tarea para sumar la primera!
+        </p>
+      </div>
+    );
   }
 
   const totalTasks = tasks.length;

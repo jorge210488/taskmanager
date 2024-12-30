@@ -24,7 +24,9 @@ export class AuthController {
 
   @HttpCode(201)
   @Post('signup')
-  async signup(@Body() createUserDto: CreateUserDto): Promise<UserDocument> {
+  async signup(
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<{ name: string; email: string }> {
     return this.authService.signup(createUserDto);
   }
 
@@ -38,7 +40,9 @@ export class AuthController {
   @HttpCode(200)
   @Get()
   @UseGuards(AuthGuard)
-  async getAllUsers(): Promise<UserDocument[]> {
+  async getAllUsers(): Promise<
+    { name: string; email: string; userId: string }[]
+  > {
     return this.authService.getAllUsers();
   }
 
@@ -46,7 +50,9 @@ export class AuthController {
   @HttpCode(200)
   @Get(':id')
   @UseGuards(AuthGuard)
-  async getUserById(@Param('id') id: string): Promise<UserDocument> {
+  async getUserById(
+    @Param('id') id: string,
+  ): Promise<{ name: string; email: string; userId: string }> {
     return this.authService.getUserById(id);
   }
 
@@ -57,7 +63,7 @@ export class AuthController {
   async updateUser(
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
-  ): Promise<UserDocument> {
+  ): Promise<{ message: string; name: string; email: string; userId: string }> {
     return this.authService.updateUser(id, updateUserDto);
   }
 
