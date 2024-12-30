@@ -36,6 +36,7 @@ export default function NavBar() {
     name: string;
     email: string;
     token: string;
+    userId: string;
   }) => {
     dispatch(login(userData));
     setModalType(undefined);

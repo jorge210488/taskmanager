@@ -1,7 +1,7 @@
 import { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import { useGetTasksQuery } from "./services/taskApi";
+import { useGetTasksByUserIdQuery } from "./services/taskApi";
 import { fetchTasksSuccess } from "./redux/tasksSlice";
 import NavBar from "./components/home/navBar";
 import Footer from "./components/home/footer";
@@ -12,30 +12,26 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const dispatch = useDispatch();
-  const { isAuthenticated, token } = useSelector(
+  const { isAuthenticated, userId } = useSelector(
     (state: RootState) => state.auth
-  ); // Agrega `token`
-
-  // Pasa `token` como argumento a la query
-  const { data: tasks } = useGetTasksQuery(
-    isAuthenticated ? token : undefined,
-    {
-      skip: !isAuthenticated, // Skips query when not authenticated
-    }
   );
+
+  const { data: tasks } = useGetTasksByUserIdQuery(userId, {
+    skip: !isAuthenticated || !userId,
+  });
 
   useEffect(() => {
     if (isAuthenticated && tasks) {
-      dispatch(fetchTasksSuccess(tasks)); // Carga las tareas del usuario actual
+      dispatch(fetchTasksSuccess(tasks));
     } else {
-      dispatch(fetchTasksSuccess([])); // Limpia las tareas si no está autenticado
+      dispatch(fetchTasksSuccess([]));
     }
   }, [isAuthenticated, tasks, dispatch]);
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-r from-blue-500 to-green-500">
       <NavBar />
-      <main className="flex-grow overflow-auto relative">{children}</main>
+      <main className="flex-grow overflow-hidden relative">{children}</main>
       <Footer />
     </div>
   );

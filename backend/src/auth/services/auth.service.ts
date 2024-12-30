@@ -32,25 +32,30 @@ export class AuthService {
 
   async signin(
     loginDto: LoginDto,
-  ): Promise<{ token: string; name: string; email: string }> {
+  ): Promise<{ token: string; name: string; email: string; userId: string }> {
     const { email, password } = loginDto;
 
+    // Buscar al usuario por email
     const user = await this.userModel.findOne({ email });
     if (!user) {
       throw new NotFoundException('Credenciales inválidas');
     }
 
+    // Validar la contraseña
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       throw new BadRequestException('Credenciales inválidas');
     }
 
+    // Generar el token JWT con el userId
     const token = this.jwtService.sign({ userId: user._id });
 
+    // Retornar el token junto con el userId, name y email
     return {
       token,
       name: user.name,
       email: user.email,
+      userId: user._id.toString(), // Convertir a string si es un ObjectId
     };
   }
 

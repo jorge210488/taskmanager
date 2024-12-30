@@ -34,6 +34,7 @@ export default function SignIn({ onLogin }: SignInProps) {
           name: response.name,
           email: response.email,
           token: response.token,
+          userId: response.userId,
         })
       );
 
@@ -42,6 +43,7 @@ export default function SignIn({ onLogin }: SignInProps) {
           name: response.name,
           email: response.email,
           token: response.token,
+          userId: response.userId,
         });
       }
 

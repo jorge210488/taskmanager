@@ -6,7 +6,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full text-white py-6 px-10 flex justify-between items-center bg-transparent z-50 mt-auto">
+    <footer className="w-full text-white py-0 px-10 flex justify-between items-center bg-transparent z-50">
       <>
         <p className="text-xs sm:text-sm">
           © 2024 Diseño de Jorge Martínez. Todos los derechos reservados.

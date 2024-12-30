@@ -1,10 +1,5 @@
-import { Task } from "../../interfaces/task.interface";
+import { TaskCardProps } from "../../interfaces/taskCardProps";
 import taskImage from "../../assets/task.png";
-
-interface TaskCardProps {
-  task: Task;
-  onClick: (task: Task) => void;
-}
 
 export default function TaskCard({ task, onClick }: TaskCardProps) {
   return (
@@ -12,7 +7,6 @@ export default function TaskCard({ task, onClick }: TaskCardProps) {
       onClick={() => onClick(task)}
       className="flex flex-col md:flex-row md:items-center bg-gradient-to-r from-green-500 to-blue-500 shadow-lg rounded-lg p-4 w-full max-w-sm md:max-w-md transition transform hover:scale-110 cursor-pointer"
     >
-      {/* Imagen e indicador */}
       <div className="flex-shrink-0 flex flex-col items-center gap-2">
         <img
           src={taskImage}

@@ -9,7 +9,11 @@ import { Task } from "../../interfaces/task.interface";
 export default function TasksPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
-  const [filters, setFilters] = useState({ searchQuery: "", filterStatus: "" });
+  const [filters, setFilters] = useState({
+    searchQuery: "",
+    filterStatus: "",
+    sortBy: "",
+  });
 
   const handleAddTask = () => {
     console.log("Abrir modal para crear tarea");
@@ -18,7 +22,7 @@ export default function TasksPage() {
   };
 
   const handleTaskClick = (task: Task) => {
-    setSelectedTask(task); // Modal en modo actualización
+    setSelectedTask(task);
     setIsModalOpen(true);
   };
 
@@ -29,6 +33,7 @@ export default function TasksPage() {
   const handleFilterChange = (newFilters: {
     searchQuery: string;
     filterStatus: string;
+    sortBy: string;
   }) => {
     setFilters(newFilters);
   };
