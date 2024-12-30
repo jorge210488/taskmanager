@@ -15,13 +15,19 @@ export default function SignUp({ onClose }: SignUpProps) {
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("El nombre es obligatorio")
-      .min(3, "Debe tener al menos 3 caracteres"),
+      .min(3, "Debe tener al menos 3 caracteres")
+      .max(80, "Debe tener como máximo 80 caracteres"),
     email: Yup.string()
       .email("Debe ser un correo válido")
       .required("El correo es obligatorio"),
     password: Yup.string()
       .required("La clave es obligatoria")
-      .min(6, "Debe tener al menos 6 caracteres"),
+      .min(8, "Debe tener al menos 8 caracteres")
+      .max(15, "Debe tener como máximo 15 caracteres")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]/,
+        "Debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial (!@#$%^&*)"
+      ),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Las claves deben coincidir")
       .required("Debe confirmar la clave"),
@@ -67,7 +73,7 @@ export default function SignUp({ onClose }: SignUpProps) {
           <Field
             name="name"
             type="text"
-            className="w-full px-3 py-1 sm:py-2 r border rounded-lg"
+            className="w-full px-3 py-1 sm:py-2 border rounded-lg"
             placeholder="Tu nombre"
           />
           <ErrorMessage
@@ -118,7 +124,7 @@ export default function SignUp({ onClose }: SignUpProps) {
           <Field
             name="confirmPassword"
             type="password"
-            className="w-full px-3 py-1 sm:py-2 pborder rounded-lg"
+            className="w-full px-3 py-1 sm:py-2 border rounded-lg"
             placeholder="Confirma tu clave"
           />
           <ErrorMessage

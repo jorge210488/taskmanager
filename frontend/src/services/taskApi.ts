@@ -9,7 +9,7 @@ const baseQueryWithLogging = fetchBaseQuery({
       headers.set("Authorization", `Bearer ${token}`);
     }
     headers.set("Content-Type", "application/json");
-    console.log(`Base URL: ${import.meta.env.VITE_BACKEND_URL}`);
+    // console.log(`Base URL: ${import.meta.env.VITE_BACKEND_URL}`);
     return headers;
   },
 });
@@ -17,11 +17,11 @@ const baseQueryWithLogging = fetchBaseQuery({
 export const taskApi = createApi({
   reducerPath: "taskApi",
   baseQuery: async (args, api, extraOptions) => {
-    const method = typeof args === "string" ? "GET" : args.method || "GET";
-    const url = typeof args === "string" ? args : args.url || "unknown";
-    console.log(`Solicitud: [${method}] ${url}`);
+    // const method = typeof args === "string" ? "GET" : args.method || "GET";
+    // const url = typeof args === "string" ? args : args.url || "unknown";
+    // console.log(`Solicitud: [${method}] ${url}`);
     const result = await baseQueryWithLogging(args, api, extraOptions);
-    console.log("Resultado:", result);
+    // console.log("Resultado:", result);
     return result;
   },
   tagTypes: ["Task"],

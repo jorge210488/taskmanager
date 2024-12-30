@@ -16,7 +16,7 @@ export default function TasksPage() {
   });
 
   const handleAddTask = () => {
-    console.log("Abrir modal para crear tarea");
+    // console.log("Abrir modal para crear tarea");
     setSelectedTask(null);
     setIsModalOpen(true);
   };
