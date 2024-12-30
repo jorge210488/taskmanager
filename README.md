@@ -4,6 +4,14 @@
 ![TaskManager Mobile Preview](frontend/src/assets/mobileview.png)
 ![TaskManager Mobile Preview](frontend/src/assets/mobileview2.png)
 
+## Deploy
+
+- **Frontend**
+  [TaskManager Frontend](https://taskmanager-amber-nine.vercel.app/)
+
+- **Backend**
+  [TaskManager Backend API](https://taskmanager-kdhq.onrender.com/api)
+
 ## Description
 
 TaskManager is a full-stack task management application designed for users to create, update, and manage their tasks effectively. It is built with the following technologies:
