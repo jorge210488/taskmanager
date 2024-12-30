@@ -9,6 +9,7 @@ import { Task } from "../../interfaces/task.interface";
 export default function TasksPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [filters, setFilters] = useState({ searchQuery: "", filterStatus: "" });
 
   const handleAddTask = () => {
     console.log("Abrir modal para crear tarea");
@@ -16,14 +17,26 @@ export default function TasksPage() {
     setIsModalOpen(true);
   };
 
+  const handleTaskClick = (task: Task) => {
+    setSelectedTask(task); // Modal en modo actualización
+    setIsModalOpen(true);
+  };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleFilterChange = (newFilters: {
+    searchQuery: string;
+    filterStatus: string;
+  }) => {
+    setFilters(newFilters);
   };
 
   return (
     <div className="min-h-screen flex flex-col overflow-auto mt-4 mb-10 sm:mr-10">
       {/* Headline */}
-      <div className="w-full text-center text-white px-4 md:px-8 mt-8 sm:mt-4">
+      <div className="w-full text-center text-white px-4 md:px-8 pb-0 sm:pb-6 mt-8 sm:mt-4">
         <h1 className="text-3xl md:text-5xl font-bold leading-tight drop-shadow-md">
           Aquí puedes ver todas tus{" "}
           <span className="text-yellow-300">tareas</span> y{" "}
@@ -38,10 +51,13 @@ export default function TasksPage() {
       <div className="flex flex-col gap-6 px-6">
         <TaskOverview />
         <div className="mx-auto w-full lg:w-1/2">
-          <TaskControls onAddTask={handleAddTask} />
+          <TaskControls
+            onAddTask={handleAddTask}
+            onFilterChange={handleFilterChange}
+          />
         </div>
         <div className="w-full">
-          <TaskCards />
+          <TaskCards filters={filters} onTaskClick={handleTaskClick} />
         </div>
       </div>
 

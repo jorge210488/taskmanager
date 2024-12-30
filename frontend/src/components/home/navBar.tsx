@@ -80,8 +80,8 @@ export default function NavBar() {
             Menu
           </button>
           {showDropdown && (
-            <ul className="min-w-max absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow overflow-hidden">
-              <li className="flex gap-3 items-center px-4 py-2 text-gray-800 hover:bg-gray-50 cursor-pointer">
+            <ul className="min-w-max absolute right-0 mt-2 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-800 divide-y divide-gray-100 rounded-lg shadow overflow-hidden">
+              <li className="flex gap-3 items-center px-4 py-2 text-gray-800 hover:bg-gray-50">
                 <img
                   src={ProfilePic}
                   className="w-12 rounded-full"

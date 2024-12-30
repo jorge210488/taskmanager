@@ -27,7 +27,7 @@ export default function HomeModal({
     >
       <div
         ref={modalRef}
-        className="bg-white w-[60%] max-w-sm sm:max-w-3xl rounded-lg shadow-lg flex flex-col sm:flex-row relative overflow-hidden animate-fade-in p-3 sm:p-6"
+        className="bg-gradient-to-r from-purple-600 via-indigo-800 to-blue-600 w-[60%] max-w-sm sm:max-w-3xl rounded-lg shadow-lg flex flex-col sm:flex-row relative overflow-hidden animate-fade-in p-3 sm:p-6"
         style={{
           top: "-10%",
         }}
@@ -41,7 +41,7 @@ export default function HomeModal({
         <div className="w-full sm:w-1/2 p-0 sm:p-6">
           <button
             onClick={onClose}
-            className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
+            className="absolute top-2 right-2 hover:font-extrabold"
             aria-label="Cerrar modal"
           >
             ✕

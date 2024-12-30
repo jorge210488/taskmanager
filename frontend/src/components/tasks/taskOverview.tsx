@@ -35,6 +35,7 @@ export default function TaskOverview() {
         labels: {
           boxWidth: 20,
           padding: 10,
+          color: "#FFFFFF",
           font: {
             size: 14,
           },
@@ -63,6 +64,37 @@ export default function TaskOverview() {
     ],
   };
 
+  const barOptions = {
+    scales: {
+      x: {
+        ticks: {
+          color: "#FFFFFF",
+          font: {
+            size: 14,
+          },
+        },
+      },
+      y: {
+        ticks: {
+          color: "#FFFFFF",
+          font: {
+            size: 14,
+          },
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: "#FFFFFF",
+          font: {
+            size: 14,
+          },
+        },
+      },
+    },
+  };
+
   return (
     <div className="flex flex-col md:flex-row gap-4 px-4 pt-0 pb-4 sm:p-4">
       <div className="rounded-lg p-4 flex flex-col items-center justify-center flex-1">
@@ -72,17 +104,17 @@ export default function TaskOverview() {
       </div>
 
       {/* Total Tasks */}
-      <div className="bg-gray-200 shadow-md rounded-lg flex flex-col items-center justify-center flex-1">
+      <div className="bg-gradient-to-r from-purple-600 via-indigo-800 to-blue-600 shadow-md rounded-lg flex flex-col items-center justify-center flex-1">
         <h2 className="text-xl md:text-5xl font-bold pb-1 sm:pb-4">
           Total de Tareas
         </h2>
-        <p className="text-3xl md:text-5xl font-bold text-indigo-500">
+        <p className="text-3xl md:text-5xl font-extrabold text-indigo-500">
           {totalTasks}
         </p>
       </div>
 
       {/* Completed vs Not Completed */}
-      <div className="bg-gray-400 shadow-md rounded-lg flex flex-col items-center justify-center flex-1 pb-1">
+      <div className="bg-gradient-to-tr from-gray-800 via-blue-500 to-cyan-700shadow-md rounded-lg flex flex-col items-center justify-center flex-1 pb-1">
         <h2 className="text-lg md:text-2xl font-bold text-center mb-0 sm:mb-2">
           Completadas vs pendientes
         </h2>
@@ -92,12 +124,12 @@ export default function TaskOverview() {
       </div>
 
       {/* Tasks by Hour */}
-      <div className="bg-gray-200 shadow-md rounded-lg p-4 flex flex-col items-center justify-center flex-1">
+      <div className="bg-gradient-to-tr from-gray-800 via-blue-500  shadow-md rounded-lg p-4 flex flex-col items-center justify-center flex-1">
         <h2 className="text-lg md:text-2xl font-bold text-center mb-2 md:mb-4">
           Tareas creadas por hora
         </h2>
         <div className="w-full max-w-xs">
-          <Bar data={barData} />
+          <Bar data={barData} options={barOptions} />
         </div>
       </div>
     </div>

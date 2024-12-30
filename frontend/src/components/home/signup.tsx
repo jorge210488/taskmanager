@@ -61,7 +61,9 @@ export default function SignUp({ onClose }: SignUpProps) {
     >
       <Form className="space-y-1 sm:space-y-4 text-sm sm:text-xl">
         <div>
-          <label htmlFor="name">Nombre</label>
+          <label className="font-bold" htmlFor="name">
+            Nombre
+          </label>
           <Field
             name="name"
             type="text"
@@ -76,7 +78,9 @@ export default function SignUp({ onClose }: SignUpProps) {
         </div>
 
         <div>
-          <label htmlFor="email">Correo</label>
+          <label className="font-bold" htmlFor="email">
+            Correo
+          </label>
           <Field
             name="email"
             type="email"
@@ -91,7 +95,9 @@ export default function SignUp({ onClose }: SignUpProps) {
         </div>
 
         <div>
-          <label htmlFor="password">Clave</label>
+          <label className="font-bold" htmlFor="password">
+            Clave
+          </label>
           <Field
             name="password"
             type="password"
@@ -105,8 +111,10 @@ export default function SignUp({ onClose }: SignUpProps) {
           />
         </div>
 
-        <div>
-          <label htmlFor="confirmPassword">Confirmar Clave</label>
+        <div className="pb-2">
+          <label className="font-bold" htmlFor="confirmPassword">
+            Confirmar Clave
+          </label>
           <Field
             name="confirmPassword"
             type="password"
@@ -123,7 +131,7 @@ export default function SignUp({ onClose }: SignUpProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-1 sm:py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+          className="w-full py-1 sm:py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50"
         >
           {isLoading ? "Registrando..." : "Registrarse"}
         </button>

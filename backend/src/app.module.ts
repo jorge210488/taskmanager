@@ -18,7 +18,7 @@ import { validationSchema } from './config/validation';
     }),
     JwtModule.register({
       global: true,
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '4h' },
       secret: process.env.JWT_SECRET,
     }),
     DatabaseModule,
