@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
@@ -11,6 +12,9 @@ const MySwal = withReactContent(Swal);
 
 export default function SignUp({ onClose }: SignUpProps) {
   const [signupMutation, { isLoading, error }] = useSignupMutation();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -104,12 +108,20 @@ export default function SignUp({ onClose }: SignUpProps) {
           <label className="font-bold" htmlFor="password">
             Clave
           </label>
-          <Field
-            name="password"
-            type="password"
-            className="w-full px-3 py-1 sm:py-2 border rounded-lg"
-            placeholder="Tu clave"
-          />
+          <div className="relative">
+            <Field
+              name="password"
+              type={showPassword ? "text" : "password"}
+              className="w-full px-3 py-1 sm:py-2 border rounded-lg"
+              placeholder="Tu clave"
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500"
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </span>
+          </div>
           <ErrorMessage
             name="password"
             component="div"
@@ -121,12 +133,20 @@ export default function SignUp({ onClose }: SignUpProps) {
           <label className="font-bold" htmlFor="confirmPassword">
             Confirmar Clave
           </label>
-          <Field
-            name="confirmPassword"
-            type="password"
-            className="w-full px-3 py-1 sm:py-2 border rounded-lg"
-            placeholder="Confirma tu clave"
-          />
+          <div className="relative">
+            <Field
+              name="confirmPassword"
+              type={showConfirmPassword ? "text" : "password"}
+              className="w-full px-3 py-1 sm:py-2 border rounded-lg"
+              placeholder="Confirma tu clave"
+            />
+            <span
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500"
+            >
+              {showConfirmPassword ? "🙈" : "👁️"}
+            </span>
+          </div>
           <ErrorMessage
             name="confirmPassword"
             component="div"
