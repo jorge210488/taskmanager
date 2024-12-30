@@ -2,7 +2,7 @@
 
 ![TaskManager Desktop Preview](frontend/src/assets/desktopview.png)
 ![TaskManager Mobile Preview](frontend/src/assets/mobileview.png)
-![TaskManager Mobile Preview](frontend/src/assets/mobileview.png)
+![TaskManager Mobile Preview](frontend/src/assets/mobileview2.png)
 
 ## Description
 
