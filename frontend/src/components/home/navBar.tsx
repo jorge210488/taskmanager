@@ -9,6 +9,7 @@ import SignUp from "./signup";
 import SignIn from "./signin";
 import { RootState } from "../../redux/store";
 import { logout, login } from "../../redux/authSlice";
+import { clearTasks } from "../../redux/tasksSlice";
 
 export default function NavBar() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -25,6 +26,7 @@ export default function NavBar() {
   const location = useLocation();
 
   const handleLogout = () => {
+    dispatch(clearTasks());
     dispatch(logout());
     setShowDropdown(false);
     navigate("/");

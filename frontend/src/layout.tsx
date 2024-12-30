@@ -12,14 +12,23 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
-  const { data: tasks } = useGetTasksQuery(undefined, {
-    skip: !isAuthenticated,
-  });
+  const { isAuthenticated, token } = useSelector(
+    (state: RootState) => state.auth
+  ); // Agrega `token`
+
+  // Pasa `token` como argumento a la query
+  const { data: tasks } = useGetTasksQuery(
+    isAuthenticated ? token : undefined,
+    {
+      skip: !isAuthenticated, // Skips query when not authenticated
+    }
+  );
 
   useEffect(() => {
     if (isAuthenticated && tasks) {
-      dispatch(fetchTasksSuccess(tasks));
+      dispatch(fetchTasksSuccess(tasks)); // Carga las tareas del usuario actual
+    } else {
+      dispatch(fetchTasksSuccess([])); // Limpia las tareas si no está autenticado
     }
   }, [isAuthenticated, tasks, dispatch]);
 
