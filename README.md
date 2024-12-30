@@ -1,7 +1,7 @@
 # TaskManager
 
 ![TaskManager Desktop Preview](<URL_TO_DESKTOP_PREVIEW>?raw=true)
-![TaskManager Mobile Preview](<URL_TO_MOBILE_PREVIEW>?raw=true)
+![TaskManager Mobile Preview](frontend/src/assets/mobileview.png)
 
 ## Description
 
