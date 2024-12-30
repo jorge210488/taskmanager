@@ -43,37 +43,38 @@ To set up and run the application locally, follow these steps:
 
 2. **Go to the taskmanager directory**
 
-   cd taskmanager
+- cd taskmanager
 
 3. **Navigate to both the backend and frontend directories and install the required dependencies**
 
-   cd backend
-   npm install
-   cd ../frontend
-   npm install
+- cd backend
+- npm install
+- cd ../frontend
+- npm install
 
 4. **Set Up Environment Variables** Create a .env file in both the backend and frontend directories. Use the .env.example file in each directory as a guide for the required variables.
 
-   **Backend**
-   PORT=
-   MONGO_URI=<Your MongoDB URI>
-   JWT_SECRET=<Your JWT Secret>
-   **Frontend**
-   VITE_BACKEND_URL=[< URL>](https://taskmanager-kdhq.onrender.com/)
+- **Backend**
+- PORT=app_port
+- MONGO_URI=<Your MongoDB URI>
+- JWT_SECRET=<Your JWT Secret>
+
+- **Frontend**
+- VITE_BACKEND_URL=[< URL>](https://taskmanager-kdhq.onrender.com/)
 
 5. **Build the application** Build the Frontend and backend
 
-   cd frontend
-   npm run build
-   cd backend
-   npm run build
+- cd frontend
+- npm run build
+- cd backend
+- npm run build
 
 6. **Run the application**
 
-   cd frontend
-   npm run dev
-   cd backend
-   npm run start:dev
+- cd frontend
+- npm run dev
+- cd backend
+- npm run start:dev
 
 ## Application Walkthrough
 
