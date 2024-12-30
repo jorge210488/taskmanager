@@ -56,11 +56,11 @@ To set up and run the application locally, follow these steps:
 
 - **Backend**
 - PORT=app_port
-- MONGO_URI=<Your MongoDB URI>
-- JWT_SECRET=<Your JWT Secret>
+- MONGO_URI=MongoDB_URI
+- JWT_SECRET=jwtsecretpassword
 
 - **Frontend**
-- VITE_BACKEND_URL=[< URL>](https://taskmanager-kdhq.onrender.com/)
+- VITE_BACKEND_URL=Backend_URL
 
 5. **Build the application** Build the Frontend and backend
 
